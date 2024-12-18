@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCPRO - Professional Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="matrix-rain"></div>
+        <div class="calculator">
+            <div class="calculator-header">
+                <div class="logo">
+                    <div class="logo-icon">C</div>
+                    <div class="logo-text">CALCPRO</div>
+                </div>
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+            
+            <div class="display-container">
+                <div class="display-overlay"></div>
+                <div class="history-display" id="historyDisplay"></div>
+                <input type="text" id="result" readonly>
+            </div>
+            
+            <div class="buttons-grid">
+                <button class="operator special" onclick="clearDisplay()">AC</button>
+                <button class="operator" onclick="deleteLastChar()">
+                    <i class="fas fa-backspace"></i>
+                </button>
+                <button class="operator" onclick="appendValue('%')">%</button>
+                <button class="operator premium" onclick="appendValue('/')">÷</button>
+                
+                <button class="number" onclick="appendValue('7')">7</button>
+                <button class="number" onclick="appendValue('8')">8</button>
+                <button class="number" onclick="appendValue('9')">9</button>
+                <button class="operator premium" onclick="appendValue('*')">×</button>
+                
+                <button class="number" onclick="appendValue('4')">4</button>
+                <button class="number" onclick="appendValue('5')">5</button>
+                <button class="number" onclick="appendValue('6')">6</button>
+                <button class="operator premium" onclick="appendValue('-')">−</button>
+                
+                <button class="number" onclick="appendValue('1')">1</button>
+                <button class="number" onclick="appendValue('2')">2</button>
+                <button class="number" onclick="appendValue('3')">3</button>
+                <button class="operator premium" onclick="appendValue('+')">+</button>
+                
+                <button class="number zero" onclick="appendValue('0')">0</button>
+                <button class="number" onclick="appendValue('.')">.</button>
+                <button class="equal" onclick="calculate()">=</button>
+            </div>
+            
+            <div class="export-section">
+                <div class="export-title">Export Options</div>
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="copyToClipboard()" title="Copiar">
+                        <i class="fas fa-copy"></i>
+                        <span>Copy</span>
+                    </button>
+                    <button class="export-btn" onclick="exportToPDF()" title="Exportar PDF">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>PDF</span>
+                    </button>
+                    <button class="export-btn" onclick="exportToTXT()" title="Exportar TXT">
+                        <i class="fas fa-file-alt"></i>
+                        <span>TXT</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="signature">
+                <div class="signature-line"></div>
+                <span class="signature-text">Designed by Aleksandro Alves</span>
+                <div class="signature-line"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,638 @@
+:root {
+    --gold-primary: #D4AF37;
+    --gold-secondary: #B8860B;
+    --gold-light: #FFD700;
+    --gold-dark: #996515;
+    --gold-gradient: linear-gradient(145deg, var(--gold-light), var(--gold-primary));
+    --black-primary: #000000;
+    --black-secondary: #1a1a1a;
+    --glass-effect: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #000000, #1a1a1a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.container {
+    position: relative;
+    padding: 20px;
+}
+
+.calculator {
+    position: relative;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 350px;
+    width: 100%;
+}
+
+/* Header Styling */
+.calculator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black-primary);
+    background: var(--gold-gradient);
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+/* Display Styling */
+.display-container {
+    position: relative;
+    margin-bottom: 20px;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+#result {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    color: var(--gold-primary);
+    font-size: 28px;
+    text-align: right;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px;
+    outline: none;
+}
+
+/* Buttons Grid */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 18px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #1a1a1a, #222);
+    color: var(--gold-primary);
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.operator {
+    background: linear-gradient(145deg, #222, #2a2a2a);
+    font-weight: 700;
+}
+
+.premium {
+    color: var(--gold-light);
+}
+
+.equal {
+    background: var(--gold-gradient);
+    color: var(--black-primary);
+    font-weight: 700;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+/* Export Section */
+.export-section {
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+.export-title {
+    color: var(--gold-primary);
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.export-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.export-btn i {
+    font-size: 16px;
+}
+
+/* Signature */
+.signature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.signature-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+}
+
+.signature-text {
+    color: var(--gold-primary);
+    font-size: 14px;
+    opacity: 0.8;
+    white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .calculator {
+        padding: 20px;
+    }
+    
+    button {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    #result {
+        font-size: 24px;
+    }
+    
+    .logo-text {
+        font-size: 18px;
+    }
+}
+
+/* Animations */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.button-press {
+    animation: buttonPress 0.2s ease;
+}
+
+/* Efeitos Glitch */
+.glitch-effect {
+    animation: glitch 0.3s ease-in-out;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+        text-shadow: none;
+    }
+    20% {
+        transform: translate(-2px, 2px);
+        text-shadow: 
+            2px 0 #ff0080,
+            -2px 0 #00ff00;
+    }
+    40% {
+        transform: translate(2px, -2px);
+        text-shadow: 
+            3px 0 #ff0080,
+            -3px 0 #00ff00;
+    }
+    60% {
+        transform: translate(-2px, -2px);
+        text-shadow: 
+            -3px 0 #ff0080,
+            3px 0 #00ff00;
+    }
+    80% {
+        transform: translate(2px, 2px);
+        text-shadow: 
+            -2px 0 #ff0080,
+            2px 0 #00ff00;
+    }
+    100% {
+        transform: translate(0);
+        text-shadow: none;
+    }
+}
+
+.display-glitch {
+    position: relative;
+    overflow: hidden;
+}
+
+.display-glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    text-shadow: -2px 0 #ff0080;
+    top: 0;
+    width: 100%;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.display-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    text-shadow: 2px 0 #00ff00;
+    top: 0;
+    width: 100%;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+        transform: skew(0.85deg);
+    }
+    5% {
+        clip: rect(70px, 9999px, 71px, 0);
+        transform: skew(0.85deg);
+    }
+    10% {
+        clip: rect(7px, 9999px, 92px, 0);
+        transform: skew(-0.85deg);
+    }
+    15% {
+        clip: rect(73px, 9999px, 4px, 0);
+        transform: skew(0.36deg);
+    }
+    20% {
+        clip: rect(89px, 9999px, 87px, 0);
+        transform: skew(-0.36deg);
+    }
+    25% {
+        clip: rect(12px, 9999px, 88px, 0);
+        transform: skew(0.4deg);
+    }
+    30% {
+        clip: rect(26px, 9999px, 68px, 0);
+        transform: skew(0.61deg);
+    }
+    35% {
+        clip: rect(62px, 9999px, 82px, 0);
+        transform: skew(-0.61deg);
+    }
+    40% {
+        clip: rect(23px, 9999px, 46px, 0);
+        transform: skew(-0.94deg);
+    }
+    45% {
+        clip: rect(37px, 9999px, 56px, 0);
+        transform: skew(0.94deg);
+    }
+    50% {
+        clip: rect(71px, 9999px, 23px, 0);
+        transform: skew(0.58deg);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 99px, 0);
+        transform: skew(0.85deg);
+    }
+    5% {
+        clip: rect(69px, 9999px, 67px, 0);
+        transform: skew(0.85deg);
+    }
+    10% {
+        clip: rect(69px, 9999px, 33px, 0);
+        transform: skew(0.85deg);
+    }
+    15% {
+        clip: rect(96px, 9999px, 99px, 0);
+        transform: skew(0.85deg);
+    }
+    20% {
+        clip: rect(76px, 9999px, 91px, 0);
+        transform: skew(0.85deg);
+    }
+    25% {
+        clip: rect(93px, 9999px, 68px, 0);
+        transform: skew(0.85deg);
+    }
+    30% {
+        clip: rect(92px, 9999px, 69px, 0);
+        transform: skew(0.85deg);
+    }
+    35% {
+        clip: rect(65px, 9999px, 100px, 0);
+        transform: skew(0.85deg);
+    }
+    40% {
+        clip: rect(84px, 9999px, 41px, 0);
+        transform: skew(0.85deg);
+    }
+    45% {
+        clip: rect(75px, 9999px, 64px, 0);
+        transform: skew(0.85deg);
+    }
+    50% {
+        clip: rect(80px, 9999px, 100px, 0);
+        transform: skew(0.85deg);
+    }
+}
+
+/* Efeito Cyber para Operadores */
+.operator-effect {
+    animation: operatorPulse 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.operator-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 215, 0, 0.8),
+        transparent 40%,
+        rgba(255, 0, 128, 0.4) 60%,
+        transparent 70%
+    );
+    animation: operatorRipple 0.5s ease-out;
+}
+
+.operator-effect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 215, 0, 0.3),
+        transparent
+    );
+    animation: operatorScan 0.5s linear;
+}
+
+@keyframes operatorPulse {
+    0% { transform: scale(1); }
+    50% { 
+        transform: scale(1.1);
+        text-shadow: 
+            0 0 10px var(--gold-primary),
+            0 0 20px var(--gold-primary),
+            0 0 30px var(--gold-light);
+    }
+    100% { transform: scale(1); }
+}
+
+@keyframes operatorRipple {
+    0% {
+        transform: translate(50%, 50%) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(50%, 50%) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes operatorScan {
+    0% {
+        transform: translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateY(100%) rotate(45deg);
+    }
+}
+
+/* Efeito de energia nos operadores */
+.operator-energy {
+    position: relative;
+}
+
+.energy-particle {
+    position: absolute;
+    pointer-events: none;
+    background: radial-gradient(circle, var(--gold-light), transparent);
+    border-radius: 50%;
+    animation: energyFloat 1s ease-out forwards;
+}
+
+@keyframes energyFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(
+            calc(var(--x) * 100px),
+            calc(var(--y) * 100px)
+        ) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Ajuste dos efeitos do botão igual */
+.epic-effect {
+    animation: epicPulse 1s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator.shake-effect {
+    animation: calculatorShake 0.5s cubic-bezier(0.36, 0, 0.66, -0.56);
+    transform-origin: center center;
+}
+
+.power-surge::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 215, 0, 0.8) 0%,
+        rgba(255, 215, 0, 0.4) 30%,
+        transparent 70%
+    );
+    animation: surgePulse 0.8s ease-out;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* Partículas de energia refinadas */
+.energy-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 215, 0, 1) 0%,
+        rgba(255, 215, 0, 0.8) 50%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Animações refinadas */
+@keyframes epicPulse {
+    0% { transform: scale(1); }
+    20% { 
+        transform: scale(1.1);
+        box-shadow: 
+            0 0 20px var(--gold-primary),
+            0 0 40px var(--gold-light);
+    }
+    100% { transform: scale(1); }
+}
+
+@keyframes calculatorShake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-3px, 2px) rotate(-1deg); }
+    50% { transform: translate(3px, -2px) rotate(1deg); }
+    75% { transform: translate(-3px, -2px) rotate(-0.5deg); }
+}
+
+@keyframes surgePulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Efeito de brilho nos botões */
+.button-glow {
+    animation: buttonGlow 0.5s ease-out;
+}
+
+@keyframes buttonGlow {
+    0% { filter: brightness(1); }
+    50% { 
+        filter: brightness(1.5);
+        text-shadow: 0 0 10px var(--gold-primary);
+    }
+    100% { filter: brightness(1); }
+}
+
+.matrix-rain.intense {
+    opacity: 0.8;
+    filter: brightness(1.5) contrast(1.2);
+}
+
+/* Efeito nos números do display */
+.display-surge {
+    animation: numberSurge 0.5s ease-out;
+}
+
+@keyframes numberSurge {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { 
+        transform: scale(1.2); 
+        filter: brightness(2);
+        text-shadow: 
+            0 0 10px var(--gold-primary),
+            0 0 20px var(--gold-light),
+            0 0 30px var(--gold-secondary);
+    }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Efeito de energia nos botões */
+.button-energy {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-energy::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.5), transparent);
+    animation: energyFlow 1s linear;
+}
+
+@keyframes energyFlow {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
